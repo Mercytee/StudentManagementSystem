@@ -30,23 +30,31 @@ public class ServiceImplementation  implements StudentService {
     }
 
     @Override
-    public ResponseEntity updateStudent(Long id) {
+    public ResponseEntity updateStudent(int id,Student updatedStudent) {
         Optional<Student>student = studentRepository.findById(id);
         if (student.isPresent()){
             Student student1 = student.get();
-            student1.setFirstName(student1.getFirstName());
-            student1.setLastName(student1.getLastName());
-            student1.setIdentificationNumber(student1.getIdentificationNumber());
+            student1.setId(id);
+            student1.setFirstName(updatedStudent.getFirstName());
+            student1.setLastName(updatedStudent.getLastName());
+            student1.setIdentificationNumber(updatedStudent.getIdentificationNumber());
+            try{
+                studentRepository.save(student1);
 
-            studentRepository.save(student1);
+            }catch (Exception e){
+                e.printStackTrace();
+                return ResponseEntity.ok().body("Error in updating student.");
+
+            }
             return ResponseEntity.ok().body("Student successfully updated");
 
-        }else {return ResponseEntity.ok().body("Failed to update student");}
+        }
+        return ResponseEntity.ok().body("Student is not found.");
 
     }
 
     @Override
-    public ResponseEntity deleteStudent(Long id) {
+    public ResponseEntity deleteStudent(int id) {
         Optional<Student>student = studentRepository.findById(id);
         if (student.isPresent()){
 

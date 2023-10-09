@@ -6,10 +6,12 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger.web.UiConfiguration;
+import springfox.documentation.swagger.web.UiConfigurationBuilder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 
 @EnableSwagger2
 @Configuration
@@ -25,15 +27,17 @@ public class SwaggerConfig {
     }
         private ApiInfo apiInfo() {
             return new ApiInfoBuilder()
-                    .title("One All Market API")
-                    .description("One All Market API")
-                    .contact(new Contact("Hitrac Developers", "https://hitrac.co.zw", "infor@hitrac.co.zw"))
-                    .license("HITRAC")
-                    .licenseUrl("https://hitrac.co.zw/OneAllMarket/LICENSE")
+                    .title("Student Management System API")
+                    .description("Managing Student Data")
                     .version("1.0.0")
                     .build();
         }
-
+    @Bean
+    public UiConfiguration uiConfiguration() {
+        return UiConfigurationBuilder.builder()
+                .validatorUrl(null)
+                .build();
+    }
 
 
 }

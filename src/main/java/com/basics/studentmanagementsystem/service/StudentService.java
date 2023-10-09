@@ -7,9 +7,10 @@ import org.springframework.stereotype.Service;
 public interface StudentService {
 
     ResponseEntity<Student> createStudent(Student student);
-    ResponseEntity<Student> updateStudent(Long id);
-    ResponseEntity deleteStudent(Long id );
+    ResponseEntity<Student> updateStudent(int id,Student student);
+    ResponseEntity deleteStudent(int id );
     ResponseEntity getAllStudents( );
 
 
-} 
+
+}
